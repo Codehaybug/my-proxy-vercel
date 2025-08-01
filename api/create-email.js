@@ -4,8 +4,18 @@ const AUTH_TOKEN = 'web-test-20250801i2f2W';
 const API_URL = `https://dropmail.me/api/graphql/${AUTH_TOKEN}`;
 
 module.exports = async function (req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
-    res.status(405).send({ error: 'Only POST method allowed' });
+    res.status(405).json({ error: 'Only POST method allowed' });
     return;
   }
 
