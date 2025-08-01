@@ -5,11 +5,12 @@ const API_URL = `https://dropmail.me/api/graphql/${AUTH_TOKEN}`;
 
 module.exports = async function (req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*'); // hoặc thay * bằng domain cụ thể
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
+    // CORS preflight request
     res.status(200).end();
     return;
   }
